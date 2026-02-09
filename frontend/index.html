@@ -5,19 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Assistant | Smart Help</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
-  
 
-
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ===== NAVBAR ===== -->
 <header>
   <h1>AI Assistant</h1>
   <nav>
@@ -27,7 +22,6 @@
   </nav>
 </header>
 
-<!-- ===== HERO ===== -->
 <section class="hero" id="home">
   <h2>Your <span>Smart AI Assistant</span></h2>
   <p>
@@ -36,40 +30,38 @@
   </p>
 </section>
 
-<!-- ===== CHAT ===== -->
 <section id="chat">
   <h3>Talk to AI Assistant</h3>
-  <div class="lang-select">
-  <label>🌐 Language:</label>
-  <select id="langSelect">
-    <option value="en">English</option>
-    <option value="hi">Hindi</option>
-  </select>
-</div>
 
+  <div class="lang-select">
+    <label>🌐 Language:</label>
+    <select id="langSelect">
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+    </select>
+  </div>
 
   <div class="chat-box">
     <div id="chat-output" class="chat-output">
       <p><strong>AI:</strong> Hello! How can I help you?</p>
     </div>
-    
-   <div class="voice-toggle">
-  <label>
-    <input type="checkbox" id="voiceToggle" checked />
-    🔊 Voice Reply
-  </label>
-</div>
 
-
+    <!-- ✅ VOICE TOGGLE BUTTON (ONLY ONE) -->
     <div class="chat-input">
+
+      <button id="voiceToggle" class="voice-toggle" title="Voice Reply">
+        <span id="voiceIcon">🔊</span>
+      </button>
+
       <input type="text" id="userInput" placeholder="Type your message..." />
+
       <button id="micBtn" onclick="startVoice()">🎤</button>
       <button id="sendBtn" onclick="sendMessage()">Send</button>
+
     </div>
   </div>
 </section>
 
-<!-- ===== FEATURES ===== -->
 <section id="features">
   <h3>Key Features</h3>
   <div class="features">
@@ -82,25 +74,19 @@
   </div>
 </section>
 
-<!-- ===== ABOUT ===== -->
 <section id="about">
   <h3>About This Project</h3>
   <p class="about-text">
     This AI Assistant is a personal project focused on building a simple,
-    secure, and user-friendly digital assistant. It is designed to help users
-    with daily tasks, quick information, and smart assistance using modern
-    web and AI technologies.
+    secure, and user-friendly digital assistant.
   </p>
 </section>
 
-<!-- ===== FOOTER ===== -->
 <footer>
   © 2026 AI Assistant Project | Developed by Parth Madhoriya
 </footer>
 
-<!-- ===== SCRIPT (ONLY ONCE) ===== -->
 <script src="script.js"></script>
 
 </body>
 </html>
-

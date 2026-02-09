@@ -1,3 +1,6 @@
+// ===== GLOBAL STATE (IMPORTANT) =====
+let voiceReplyEnabled = true;
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const micBtn = document.getElementById("micBtn");
@@ -6,6 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const output = document.getElementById("chat-output");
   const langSelect = document.getElementById("langSelect");
 
+  const voiceToggleBtn = document.getElementById("voiceToggle");
+  const voiceIcon = document.getElementById("voiceIcon");
+
+  // ===== VOICE TOGGLE BUTTON =====
+  if (voiceToggleBtn && voiceIcon) {
+    voiceIcon.textContent = "🔊";
+
+    voiceToggleBtn.addEventListener("click", () => {
+      voiceReplyEnabled = !voiceReplyEnabled;
+
+      voiceIcon.textContent = voiceReplyEnabled ? "🔊" : "🔇";
+
+      // stop speaking when OFF
+      window.speechSynthesis.cancel();
+    });
+  }
+
   // ===== SEND MESSAGE =====
   async function sendMessage(textFromVoice = null) {
     const message = textFromVoice || input.value.trim();
@@ -13,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const lang = langSelect ? langSelect.value : "en";
 
-    // send button feedback
     sendBtn.classList.add("send-active");
     setTimeout(() => sendBtn.classList.remove("send-active"), 300);
 
@@ -25,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message, lang }) // 🔥 lang sent to backend
+        body: JSON.stringify({ message, lang })
       });
 
       const data = await res.json();
@@ -39,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       output.scrollTop = output.scrollHeight;
 
-      // 🔊 VOICE REPLY
+      // 🔊 SPEAK AI RESPONSE
       speakText(data.reply);
 
     } catch {
@@ -49,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // expose to HTML
   window.sendMessage = sendMessage;
 
   // ===== ENTER KEY SEND =====
@@ -60,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ===== VOICE INPUT =====
+  // ===== VOICE INPUT (MIC) =====
   window.startVoice = function () {
     if (!("webkitSpeechRecognition" in window)) {
       alert("Voice recognition not supported");
@@ -69,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const recognition = new webkitSpeechRecognition();
 
-    // 🎤 mic language = selected language
     recognition.lang =
       langSelect && langSelect.value === "hi" ? "hi-IN" : "en-US";
 
@@ -90,20 +107,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-// ===== VOICE OUTPUT =====
+// ===== VOICE OUTPUT FUNCTION (ONLY ONE) =====
 function speakText(text) {
-  const voiceToggle = document.getElementById("voiceToggle");
-  if (!voiceToggle || !voiceToggle.checked) return;
+  if (!voiceReplyEnabled) return;
+  if (!text) return;
 
   const utterance = new SpeechSynthesisUtterance(text);
 
-  // 🔊 voice language auto (based on selected language OR text)
   const langSelect = document.getElementById("langSelect");
-  if (langSelect && langSelect.value === "hi") {
-    utterance.lang = "hi-IN";
-  } else {
-    utterance.lang = "en-US";
-  }
+  utterance.lang =
+    langSelect && langSelect.value === "hi" ? "hi-IN" : "en-US";
 
   utterance.rate = 1;
   utterance.pitch = 1;

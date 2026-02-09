@@ -377,3 +377,21 @@ footer {
   border: none;
   outline: none;
 }
+.voice-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #1e293b;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.voice-toggle.off {
+  background: #374151;
+  opacity: 0.6;
+}
