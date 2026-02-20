@@ -47,3 +47,48 @@
     visibility: visible;
   }
 }
+/* =====================
+   MOBILE CHAT INPUT FIX (FINAL)
+===================== */
+@media (max-width: 768px) {
+
+  /* Chat input wrapper */
+  .chat-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Text input */
+  .chat-input input {
+    flex: 1;
+    min-width: 0;            /* 🔥 MOST IMPORTANT (overflow fix) */
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  /* Mic button */
+  #micBtn,
+  .voice-toggle {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;          /* 🔥 button squeeze nahi hoga */
+    font-size: 16px;
+  }
+
+  /* Send button */
+  #sendBtn {
+    padding: 10px 16px;
+    font-size: 14px;
+    flex-shrink: 0;          /* 🔥 bahar nahi jayega */
+    white-space: nowrap;
+  }
+
+  /* Extra safety */
+  .chat-box {
+    overflow-x: hidden;
+  }
+}
