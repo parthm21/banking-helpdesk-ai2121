@@ -1,94 +1,133 @@
 /* =====================
-   MOBILE FIX – BUILT BY + TOOLTIP
+   MOBILE FINAL FIX (ALL-IN-ONE)
 ===================== */
 @media (max-width: 768px) {
 
-  /* Built by text – center & readable */
+  /* ===== HEADER (LEFT TITLE + RIGHT NAV) ===== */
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+  }
+
+  header h1 {
+    font-size: 18px;
+    text-align: left;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  nav a {
+    font-size: 13px;
+    padding: 4px 6px;
+    white-space: nowrap;
+  }
+
+  /* ===== HERO BUILT BY (CENTER, THODA UPAR) ===== */
   .built-by {
-    margin-top: -70px;        /* thoda upar */
-    font-size: 18px;         /* mobile friendly */
+    margin-top: -60px;          /* 🔥 upar */
+    font-size: 18px;
     text-align: center;
     color: #9ca3af;
   }
 
-  /* Name link */
   .portfolio-link {
     position: relative;
-    display: inline-block;
     font-weight: 600;
     color: #ffffff;
+    text-decoration: none;
   }
 
-  /* Tooltip – EXACT name ke neeche */
+  /* Hover / tap text */
   .portfolio-link .hover-text {
     position: absolute;
-    top: 100%;               /* bilkul neeche */
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     margin-top: 2px;
 
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0,0,0,0.9);
     color: #ffffff;
-    font-size: 10px;
-    padding: 3px 7px;
+    font-size: 11px;
+    padding: 4px 8px;
     border-radius: 6px;
     white-space: nowrap;
 
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.15s ease;
-    z-index: 99999;
+    z-index: 9999;
   }
 
-  /* Show on tap / hover */
   .portfolio-link:hover .hover-text,
   .portfolio-link:active .hover-text {
     opacity: 1;
     visibility: visible;
   }
-}
-/* =====================
-   MOBILE CHAT INPUT FIX (FINAL)
-===================== */
-@media (max-width: 768px) {
 
-  /* Chat input wrapper */
+  /* ===== CHAT INPUT OVERFLOW FIX ===== */
   .chat-input {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 0;
-    box-sizing: border-box;
   }
 
-  /* Text input */
   .chat-input input {
     flex: 1;
-    min-width: 0;            /* 🔥 MOST IMPORTANT (overflow fix) */
+    min-width: 0;              /* 🔥 MOST IMPORTANT */
     padding: 10px 14px;
     font-size: 14px;
   }
 
-  /* Mic button */
   #micBtn,
   .voice-toggle {
     width: 40px;
     height: 40px;
-    flex-shrink: 0;          /* 🔥 button squeeze nahi hoga */
+    flex-shrink: 0;
     font-size: 16px;
   }
 
-  /* Send button */
   #sendBtn {
     padding: 10px 16px;
     font-size: 14px;
-    flex-shrink: 0;          /* 🔥 bahar nahi jayega */
+    flex-shrink: 0;
     white-space: nowrap;
   }
 
-  /* Extra safety */
   .chat-box {
     overflow-x: hidden;
+  }
+
+  /* ===== KEY FEATURES (CLEAN & COMPACT) ===== */
+  #features {
+    margin-top: -8px;
+    padding: 40px 0;
+  }
+
+  #features h3 {
+    font-size: 26px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .features .card {
+    padding: 18px 14px;
+    font-size: 15px;
+    line-height: 1.4;
+    border-radius: 14px;
   }
 }
